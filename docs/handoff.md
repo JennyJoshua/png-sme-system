@@ -24,11 +24,11 @@ Wait until the owner explicitly approves the Phase 0 documents and authorizes Ph
 ## 4. Existing repository context
 Planning repository: JennyJoshua/png-sme-system. It contains three reports about PNG SME operations, existing solutions/opportunity gaps, and a proposed field-validation/customer-discovery plan.
 
-Related repositories identified:
-- JennyJoshua/png-materials-marketplace — an existing Next.js/TypeScript/Supabase/Prisma-style web application for a PNG building-materials marketplace. Do not assume its code is reusable without reviewing architecture, schema, auth and tests.
-- JennyJoshua/TenderReady-PNG — an existing Android-oriented TenderReady project. It may contain reusable document/workflow ideas, but it is not the same product and must not be modified as part of this handover.
+Related repositories were checked at a high level:
+- JennyJoshua/png-materials-marketplace — existing Next.js/TypeScript/Supabase/Prisma-style PWA for a PNG goods-and-services marketplace. Its README states quotations, orders and bookings are planned but not implemented; the project also reports outstanding verification work. It is a separate product, not an assumed foundation for this app.
+- JennyJoshua/TenderReady-PNG — existing offline-first native Android app with business profile, capability statement, quotation builder, PDF export and tender/readiness checklists. It overlaps with quotation/document functions, but does not serve as the proposed cashbook and credit-management system.
 
-Do not assume the owner has approved a new application repository name or destination. Propose a dedicated repository named wantok-business-manager for approval before implementation, unless the owner chooses otherwise.
+Do not merge or modify either repository without explicit owner approval. Before implementation, review technical details and decide whether to reuse requirements/patterns, and propose a dedicated application repository named wantok-business-manager for approval unless the owner chooses otherwise.
 
 ## 5. Non-negotiable requirements
 - No paid API dependency for core functionality.
@@ -63,7 +63,7 @@ Implement only after Batch 1 is accepted. Include calculations and tests.
 Implement payment allocation, balance calculations and duplicate-payment protection with tests.
 
 ### Batch 4 — Quotations and invoices
-Implement totals, status transitions, safe conversion and payment tracking.
+Implement totals, status transitions, safe conversion and payment tracking. Avoid duplicating TenderReady-PNG's existing quotation capability without a deliberate product decision.
 
 ### Batch 5 — Dashboard, export and reports
 Verify each displayed metric against known test data.
