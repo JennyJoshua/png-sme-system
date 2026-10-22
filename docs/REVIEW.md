@@ -1,42 +1,38 @@
 # Wantok Business Manager — Review and Approval
 
-**Status:** Awaiting owner review  
-**Current phase:** 0 — Specification and handover
+**Status:** Phase 0 approved; Phase 1 Batch 1 authorized  
+**Current phase:** Phase 1 — Foundation (Batch 1 only)
 
-## A. Product direction
-- [ ] Approve the combined product: Wantok Business Manager.
-- [ ] Approve the intended user groups and the statement that market demand is not yet validated.
-- [ ] Approve the five V1 modules: customer records, cashbook, credit book, quotations/invoices and dashboard.
-- [ ] Approve the explicit exclusions from V1.
-- [ ] Approve exportability as a baseline requirement.
+## Owner decision recorded
+On 2026-10-23, the owner approved the Phase 0 planning documents and instructed that the Claude handover proceed.
 
-## B. Technical decisions
-- [ ] Approve the proposed PWA approach.
-- [ ] Approve the proposed Next.js + TypeScript + Supabase stack, subject to free-tier and compatibility checks.
-- [ ] Approve PGK/K as the default currency.
-- [ ] Approve the staged offline approach and requirement for explicit sync/conflict tests.
-- [ ] Approve the security baseline: RLS, business isolation, least privilege and no secrets in client code.
+## Approved product and technical direction
+- [x] Combined product: Wantok Business Manager.
+- [x] Intuition-led target hypotheses; market demand is not claimed as validated.
+- [x] V1 scope: customer records, cashbook, credit book, quotations/invoices, dashboard/reports and export.
+- [x] Explicit V1 exclusions and financial-integrity rules.
+- [x] Mobile-first PWA.
+- [x] Next.js + TypeScript with Supabase PostgreSQL/Auth/RLS.
+- [x] PGK/K as default currency.
+- [x] Staged offline approach; sync must be explicitly implemented and tested.
+- [x] Security baseline: RLS, business isolation, least privilege and no secrets in client code.
+- [x] Render web service + Supabase database/auth as the target hosting architecture, subject to current free-tier verification before cloud setup/deployment.
+- [x] Separate app repository direction: JennyJoshua/wantok-business-manager; planning stays in JennyJoshua/png-sme-system.
 
-## C. Repository and workflow
-- [ ] Confirm that png-sme-system remains the planning/research repository.
-- [ ] Approve creation of a separate application repository, provisionally wantok-business-manager, or specify another destination.
-- [ ] Review reuse opportunities in png-materials-marketplace and TenderReady-PNG before implementation.
-- [ ] Confirm the ChatGPT → handover → Claude batch → review → owner approval workflow.
+## Current authorization
+- [x] Phase 1 Batch 1 foundation work is authorized.
+- [ ] Batch 1 has been implemented and reviewed.
+- [ ] Owner approval to start Batch 2.
 
-## D. Required before Phase 1 starts
-- [ ] Owner explicitly approves the Phase 0 specification.
-- [ ] Owner explicitly authorizes Phase 1 foundation work.
-- [ ] The implementation destination is confirmed.
-- [ ] Current free-tier constraints are checked before creating or relying on cloud services.
-- [ ] No credentials or paid services are introduced without explicit approval.
+## Conditions and restrictions
+- Check whether the app repository exists and report access/creation limits.
+- Do not create cloud projects, deploy publicly, add paid services, or use real customer financial data in Batch 1.
+- Check current official free-tier terms before relying on Render/Supabase.
+- Do not modify or merge png-materials-marketplace or TenderReady-PNG.
+- ChatGPT reviews Batch 1 before the owner decides whether Batch 2 can start.
 
 ## Reviewer notes
-Record corrections and approved changes before Phase 1.
-
 - Product/scope changes:
 - Technical changes:
 - Repository destination:
 - Other concerns:
-
-## Gate
-Until the owner has approved the requirements and authorized Phase 1, the project remains in planning. No code implementation is authorized by this document alone.
