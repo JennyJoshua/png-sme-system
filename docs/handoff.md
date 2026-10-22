@@ -1,83 +1,85 @@
-# Handover — Wantok Business Manager
+# Claude Handover — Wantok Business Manager
 
 **Recipient:** Claude implementation assistant  
 **Prepared by:** ChatGPT  
 **Date:** 2026-10-23  
-**Status:** Phase 0 draft — do not implement until owner approval
+**Status:** OWNER APPROVED — Phase 1 Batch 1 foundation work is authorized
 
-## 1. Objective
-Prepare for a mobile-first PWA for small PNG businesses. V1 scope: customer records, cashbook, customer credit tracking, quotations, invoices and clear business summaries. Read docs/PROJECT_REQUIREMENTS.md for complete requirements and acceptance criteria.
+## 1. Owner decision and scope
+The owner has approved the Phase 0 planning documents and instructed Claude handover to proceed. Implement **Batch 1 only** for Wantok Business Manager. Do not proceed to Batch 2 until ChatGPT has reviewed Batch 1 and the owner explicitly agrees.
 
-## 2. Current instruction
-This handover is documentation only. The owner asked to begin Phase 0, not coding. Do not create application code, database projects, cloud resources, paid accounts, deployments or migrations yet.
+Product: a mobile-first PWA for small PNG businesses. Read `docs/PROJECT_REQUIREMENTS.md` and `docs/DECISIONS.md` as the requirements baseline.
 
-Wait until the owner explicitly approves the Phase 0 documents and authorizes Phase 1.
+V1 planned modules:
+1. Customer records
+2. Cashbook (recorded income/expenses, with cash actually received kept distinct)
+3. Customer Credit Book (credit sales, payments, balances/statements)
+4. Quotations and invoices
+5. Dashboard/reports
+6. Exportable records
 
-## 3. Required reading
-1. README.md
-2. docs/PROJECT_REQUIREMENTS.md
-3. docs/DECISIONS.md
-4. docs/CHANGELOG.md
-5. docs/REVIEW.md
-6. Existing opportunity reports at the repository root.
+This is an intuition-led product hypothesis. Do not claim market demand has been validated.
 
-## 4. Existing repository context
-Planning repository: JennyJoshua/png-sme-system. It contains three reports about PNG SME operations, existing solutions/opportunity gaps, and a proposed field-validation/customer-discovery plan.
+## 2. Approved technical direction
+- Front end/application: Next.js + TypeScript, mobile-first PWA.
+- Hosting target: Render web service, subject to a current free-tier/compatibility check before deployment.
+- Database and authentication: Supabase PostgreSQL + Supabase Auth, with Row Level Security (RLS).
+- Source control: GitHub.
+- Currency: PGK/K by default.
+- Offline capability is a later, explicitly tested batch; do not claim it works just because the app is a PWA.
 
-Related repositories were checked at a high level:
-- JennyJoshua/png-materials-marketplace — existing Next.js/TypeScript/Supabase/Prisma-style PWA for a PNG goods-and-services marketplace. Its README states quotations, orders and bookings are planned but not implemented; the project also reports outstanding verification work. It is a separate product, not an assumed foundation for this app.
-- JennyJoshua/TenderReady-PNG — existing offline-first native Android app with business profile, capability statement, quotation builder, PDF export and tender/readiness checklists. It overlaps with quotation/document functions, but does not serve as the proposed cashbook and credit-management system.
+Do not use Render's free PostgreSQL as the permanent production database. Do not create a cloud project, deploy, or rely on a service tier until its current terms/limits and any inactivity, backup, data-retention, and usage restrictions have been checked. No paid plan or paid API is authorized.
 
-Do not merge or modify either repository without explicit owner approval. Before implementation, review technical details and decide whether to reuse requirements/patterns, and propose a dedicated application repository named wantok-business-manager for approval unless the owner chooses otherwise.
+## 3. Repository handling
+Planning repository: `JennyJoshua/png-sme-system`.
 
-## 5. Non-negotiable requirements
-- No paid API dependency for core functionality.
-- Do not claim demand has been validated.
-- No cross-business data access.
-- RLS and authorization tests for every exposed business-owned table.
-- Do not trust client-supplied role metadata for permissions.
-- Do not expose privileged keys.
-- Keep credit sales, cash receipts, expenses, quotations and invoices conceptually separate.
-- Protect against duplicate payment submissions and offline-sync retries.
-- Preserve exportability.
-- Document backup and recovery before real businesses rely on the service.
-- Do not claim deployment, tests or commits that have not actually happened.
+The intended app repository is `JennyJoshua/wantok-business-manager`, separate from the planning repository. First check whether it already exists and report the result. If it does not exist and Claude has permission to create repositories, create it as a separate repository and document the result. If Claude cannot create it, do not silently put application code in the planning repository: return a clean source ZIP and exact GitHub steps for the owner, or ask for the missing permission/destination.
 
-## 6. Proposed implementation batches after approval
+Do not modify or merge into `png-materials-marketplace` or `TenderReady-PNG`. They are separate projects and have not been approved as the app base.
 
-### Batch 1 — Foundation only
-- Create the approved app repository or work in the approved destination.
-- Set up the Next.js/TypeScript app with documented package versions.
-- Configure environment variable examples without secrets.
-- Define schema/migrations and business membership.
-- Configure Supabase Auth and RLS.
-- Add tests for authorization and basic setup.
-- Provide exact files changed, commands run, actual test output, commit SHA or ZIP contents, and unresolved issues.
+## 4. Batch 1 — foundation only
+Deliver only the foundation needed to demonstrate a secure, buildable starting point:
+- Next.js + TypeScript app structure with documented, compatible package versions.
+- Responsive shell and a minimal, clearly labelled placeholder landing/dashboard; do not implement business modules yet.
+- Environment-variable example file with names and safe placeholders only; no secrets.
+- Supabase client setup using only values safe for the browser where appropriate; never expose service-role or other privileged keys.
+- Initial database schema/migrations for business profile and membership/ownership foundations only, with a documented rationale. Avoid premature complex transaction schemas.
+- RLS enabled for every exposed table and least-privilege policies.
+- Automated tests that demonstrate allowed access and forbidden cross-business access. If tests need a real Supabase project or credentials, provide a local/mock test where useful and clearly mark any integration test not run; do not fabricate results.
+- Authentication/session error handling and a setup guide.
+- A CI workflow if it is straightforward and does not require secrets.
+- A brief note on backup/recovery and data export requirements still to be completed before real business data is used.
 
-Do not start Batch 2 until ChatGPT reviews Batch 1 and the owner agrees to proceed.
+Do not create production data, add real customer information, configure paid resources, deploy publicly, or claim production readiness.
 
-### Batch 2 — Customer records and cashbook
-Implement only after Batch 1 is accepted. Include calculations and tests.
+## 5. Financial integrity and security rules
+- Business data isolation must be enforced at database level, not only by UI.
+- Never trust client-editable user metadata as an authorization source.
+- Every exposed business-owned table needs RLS and tests.
+- No privileged secrets in browser code, repository files, ZIPs, logs or screenshots.
+- Later financial workflows must keep credit sales, invoice totals, cash receipts, expenses and quotation records distinct. For example, a K500 credit sale is not K500 cash received; if K200 is later paid, outstanding debt is K300.
+- Use safe monetary precision; do not use floating-point arithmetic for money calculations.
+- Do not add offline financial writes in Batch 1.
 
-### Batch 3 — Credit Book
-Implement payment allocation, balance calculations and duplicate-payment protection with tests.
+## 6. Required workflow and stopping gate
+1. Inspect the current planning documents and report any contradictions before coding.
+2. Check app-repository existence and current Render/Supabase free-tier suitability. Report current source links and relevant limits; do not create cloud projects as part of this check.
+3. Implement Batch 1 only.
+4. Run the documented install, lint/type-check/build and tests that are available.
+5. Review for security and scope errors.
+6. Deliver results and STOP. Do not start Batch 2 without review and explicit owner approval.
 
-### Batch 4 — Quotations and invoices
-Implement totals, status transitions, safe conversion and payment tracking. Avoid duplicating TenderReady-PNG's existing quotation capability without a deliberate product decision.
+If Claude cannot access GitHub or create a repository, do not claim that files were committed. Provide a ZIP/source output and report the exact blocker.
 
-### Batch 5 — Dashboard, export and reports
-Verify each displayed metric against known test data.
-
-### Batch 6 — Offline capability
-Only after online flows are correct. Define queue format, idempotency, conflict rules, sign-out behaviour and recovery tests before implementation.
-
-## 7. Required delivery format
+## 7. Required delivery report
 Return:
-1. Short summary.
-2. Exact files created/changed.
-3. Tests and commands actually run, with pass/fail counts.
-4. Commit SHA if a real commit exists; otherwise say no commit was made.
-5. Known limitations and decisions needed.
-6. A ZIP when using the owner's ZIP workflow; include source and required files, exclude .env, secrets, node_modules, build caches and unrelated files.
+1. Summary and whether app repository creation was possible.
+2. Exact repository and branch, or exact ZIP filename and contents.
+3. Exact files created/changed.
+4. Commands actually run and real pass/fail results.
+5. Commit SHA only if a real commit exists.
+6. RLS policies and how cross-business access was tested.
+7. Free-tier review with current official source links and caveats.
+8. Known limitations, unresolved decisions, and anything not tested.
 
-Do not say “complete” if any acceptance criterion is unmet. Stop at approval gates and ask before making scope-changing decisions.
+Do not say “complete,” “secure,” “deployed,” or “tests passed” unless supported by actual evidence. Stop at the Batch 1 approval gate.
