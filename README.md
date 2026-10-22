@@ -2,15 +2,16 @@
 
 This repository contains PNG SME opportunity reports and planning documents for **Wantok Business Manager**.
 
-## Current project decision
-Build one mobile-first business management application for small businesses in Papua New Guinea. Initial scope: customer records, cashbook, customer credit tracking, quotations, invoices and business summaries.
+## Product direction
+Build one mobile-first business management application for small businesses in Papua New Guinea. Initial scope: customer records, cashbook, customer credit tracking, quotations, invoices, dashboard/reports and export.
 
-This direction is based on practical product judgment and existing opportunity reports. It is **not validated demand**: no customer interviews, paid pilots or user testing have been completed.
+This is an intuition-led product hypothesis. It is **not validated demand**: no customer interviews, paid pilots or user testing have been completed.
 
 ## Project documents
 - [Project requirements](docs/PROJECT_REQUIREMENTS.md)
 - [Architecture and technical decisions](docs/DECISIONS.md)
-- [Implementation handover](docs/handoff.md)
+- [Claude implementation handover](docs/handoff.md)
+- [Phase 1 Batch 1 handover](docs/CLAUDE_PHASE1_BATCH1.md)
 - [Change log](docs/CHANGELOG.md)
 - [Review and approval checklist](docs/REVIEW.md)
 
@@ -22,10 +23,11 @@ This direction is based on practical product judgment and existing opportunity r
 The field-validation report is retained as background only. The current instruction is to proceed with an intuition-led product specification rather than block planning on interviews.
 
 ## Current status
-**Phase 0 — Specification and handover:** documentation prepared for owner review.  
-**Phase 1 — Foundation:** not approved and not started.
+**Phase 0 — Specification:** approved by the owner.  
+**Phase 1 — Foundation, Batch 1:** authorized; implementation results are pending.  
+**Batch 2 onward:** not authorized until Batch 1 is reviewed and the owner approves continuation.
 
-No application code, database, hosting, or production service is being created by this planning update. Do not begin implementation until the owner explicitly approves the Phase 0 documents and authorizes Phase 1.
+No application code, database project, hosting service, or production deployment has been created by this planning update.
 
 ## Working rules
 1. Keep work suitable for free-tier tools and avoid paid APIs.
