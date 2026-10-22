@@ -1,38 +1,27 @@
-# PNG SME System — Project Control
+# Wantok Business Manager
 
-This repository contains PNG SME opportunity reports and planning documents for **Wantok Business Manager**.
+Mobile-first PWA for small businesses in Papua New Guinea (customers, cashbook, credit book, quotations/invoices, reports, export).
 
-## Product direction
-Build one mobile-first business management application for small businesses in Papua New Guinea. Initial scope: customer records, cashbook, customer credit tracking, quotations, invoices, dashboard/reports and export.
+**Status: Phase 1, Batch 1 (foundation only).** This is an unvalidated product hypothesis, not proven demand. It is a test build: do not enter real business or customer financial records. Not production ready.
 
-This is an intuition-led product hypothesis. It is **not validated demand**: no customer interviews, paid pilots or user testing have been completed.
+Planning and decisions live in the separate repository `JennyJoshua/png-sme-system`.
 
-## Project documents
-- [Project requirements](docs/PROJECT_REQUIREMENTS.md)
-- [Architecture and technical decisions](docs/DECISIONS.md)
-- [Claude implementation handover](docs/handoff.md)
-- [Phase 1 Batch 1 handover](docs/CLAUDE_PHASE1_BATCH1.md)
-- [Change log](docs/CHANGELOG.md)
-- [Review and approval checklist](docs/REVIEW.md)
+## What exists in Batch 1
+- Next.js + TypeScript app shell, placeholder dashboard, sign-in/sign-up page, installable-app manifest (no service worker, no offline support)
+- Supabase migration for `businesses` and `business_members` with RLS (see `docs/RLS_AND_SCHEMA.md`)
+- Automated tests: RLS allowed/forbidden access on a real local PostgreSQL, env/auth-error unit tests, secret scan
+- Docs: `docs/SETUP.md`, `docs/FREE_TIER_REVIEW.md`, `docs/BACKUP_RECOVERY.md`, `docs/BATCH1_REPORT.md`
 
-## Existing research
-- [PNG SME operations and latent needs](PNG_SME_OPERATIONS_AND_LATENT_NEEDS_RESEARCH.md)
-- [Existing solutions and opportunity gap analysis](PNG_SME_EXISTING_SOLUTIONS_AND_OPPORTUNITY_GAP_ANALYSIS.md)
-- [Field validation and customer discovery plan](PNG_SME_FIELD_VALIDATION_AND_CUSTOMER_DISCOVERY.md)
+## Commands
+```
+npm install
+npm run lint
+npm run typecheck
+npm test
+npm run build
+npm run dev
+```
+Requires Node >= 22.12. See `docs/SETUP.md` for connecting your own Supabase project.
 
-The field-validation report is retained as background only. The current instruction is to proceed with an intuition-led product specification rather than block planning on interviews.
-
-## Current status
-**Phase 0 — Specification:** approved by the owner.  
-**Phase 1 — Foundation, Batch 1:** authorized; implementation results are pending.  
-**Batch 2 onward:** not authorized until Batch 1 is reviewed and the owner approves continuation.
-
-No application code, database project, hosting service, or production deployment has been created by this planning update.
-
-## Working rules
-1. Keep work suitable for free-tier tools and avoid paid APIs.
-2. Do not claim customer demand is proven.
-3. Do not add features outside the approved scope without recording a decision.
-4. Protect financial data with database-enforced authorization and tests.
-5. Preserve exportability and plan backups before real businesses depend on the product.
-6. Report actual tests, commits, deployments and limitations; never invent evidence.
+## Not built yet (needs ChatGPT review + explicit owner approval for Batch 2)
+Customer records, cashbook, credit book, quotations/invoices, dashboard reports, export, offline sync.
