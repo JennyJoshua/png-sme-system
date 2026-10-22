@@ -49,9 +49,17 @@ Proceed with an intuition-led specification rather than requiring the owner to c
 **Status:** Proposed  
 Use JennyJoshua/png-sme-system as the planning/research repository during Phase 0. Before implementation, decide whether to create a dedicated application repository or use another explicitly approved destination. Do not put app code into the research repository by default.
 
-## D-012 — Existing projects must not be duplicated
-**Status:** Required review step  
-Review the existing png-materials-marketplace and TenderReady-PNG projects for reusable patterns or overlap before implementation. Reuse must be deliberate; do not merge unrelated applications or change either project without approval.
+## D-012 — Existing projects and overlap
+**Status:** Required review step; review started during Phase 0.
+
+### png-materials-marketplace
+The existing Next.js/TypeScript/Supabase/Prisma PWA project is a marketplace for buyers and providers. Its README says quotations, orders and bookings are planned but not yet implemented. It may provide useful technical patterns, but its marketplace is a different product and its implementation status has known outstanding verification work. Do not merge Wantok Business Manager into it or assume its code is production-ready without a separate technical review.
+
+### TenderReady-PNG
+The existing offline-first native Android project already includes a business profile, capability statement, quotation builder, PDF export and tender/readiness checklists. It overlaps with document creation, especially quotations, but it is not a cashbook/credit-book system. It may remain a separate focused app. Do not duplicate its quotation feature blindly; decide later whether to reuse a specification, data rules or design ideas, not necessarily its Android code.
+
+### Resulting recommendation
+Keep Wantok Business Manager as a separate project focused on recurring business records and money tracking. Before coding, review the relevant architecture and licence/compatibility details of both projects, then choose the approved app repository. Do not modify either existing project as part of this planning work.
 
 ## D-013 — Deployment
 **Status:** Deferred  
