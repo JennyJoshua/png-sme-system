@@ -1,7 +1,7 @@
 # Wantok Business Manager — Project Requirements
 
-**Status:** Draft for owner approval  
-**Phase:** 0 — Specification and handover  
+**Status:** Owner approved for staged implementation  
+**Phase:** 1 — Foundation (Batch 1 authorized)  
 **Product owner:** Jenny Joshua  
 **Market focus:** Papua New Guinea  
 **Decision basis:** Product intuition informed by existing PNG SME opportunity reports. Demand and willingness to pay remain unvalidated.
@@ -97,7 +97,7 @@ Do not label simple income-minus-expense calculations as audited profit. Credit 
 - Show pending, synchronised and failed states.
 - Define conflict behaviour; do not silently overwrite financial records.
 - Scope local data to the signed-in user/business, protect it on shared devices, and handle it appropriately at sign-out.
-- Do not promise full offline capability until implementation and recovery tests pass.
+- Do not promise full offline capability until implementation and recovery tests pass. Offline financial writes are not part of Batch 1.
 
 ### Security and privacy
 - Enforce business isolation at database level, not only in the UI.
@@ -115,10 +115,12 @@ Do not label simple income-minus-expense calculations as audited profit. Credit 
 - Automated tests for financial calculations, authorization and core flows.
 - Document environment variables without committing secrets.
 
-### Cost
-- Prefer free-tier services and open-source tooling.
-- No paid APIs required for core functionality.
-- Verify current service limits and terms before deployment. Free tiers can change and do not guarantee permanent zero cost.
+### Cost and hosting
+- Target Render for the Next.js web service and Supabase for PostgreSQL, authentication and RLS.
+- Do not use Render's free PostgreSQL as the permanent production database.
+- Verify current official service limits and terms, inactivity/sleep behaviour, data retention, backup/recovery options and build/runtime compatibility before cloud setup or deployment.
+- Prefer free-tier services and open-source tooling. Free tiers can change and do not guarantee permanent zero cost.
+- No paid API or plan is authorized without explicit owner approval.
 
 ## 6. Explicitly out of scope for Version 1
 - Full inventory, purchasing and warehouse management.
